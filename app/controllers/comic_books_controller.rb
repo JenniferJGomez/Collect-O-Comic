@@ -1,12 +1,29 @@
 class ComicBooksController < ApplicationController
     def index 
         all_comics = ComicBook.all
-        render json: all_comics
+        render json: all_comics.to_json(
+            :include => {:users =>
+              {:except => [:created_at, :updated_at]}})
     end
+
     def show
         comic = ComicBook.find(params[:id])
-        render json: comic
+        render json: comic.to_json(
+            :include => {:users =>
+              {:except => [:created_at, :updated_at]}})
 
     end
 
+    def create
+        comic_book = Comic_book.create(comic_book_params)
+        render json: comic_book
+
+    end
+
+    def comic_book_params
+        params.require(:comic_book).permit(:image,:name, :description, :count_of_episodes, :rating)
+    end
+
+
 end
+
