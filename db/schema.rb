@@ -23,10 +23,11 @@ ActiveRecord::Schema.define(version: 2020_02_07_172029) do
   end
 
   create_table "comic_books", force: :cascade do |t|
-    t.string "title"
-    t.string "genre"
+    t.string "image"
+    t.string "name"
+    t.string "description"
+    t.integer "count_of_episodes"
     t.integer "rating"
-    t.integer "page_count"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
