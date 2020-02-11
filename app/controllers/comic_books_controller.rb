@@ -20,10 +20,19 @@ class ComicBooksController < ApplicationController
 
     end
 
+    def collections
+
+        collection = Collection.create(user_id: params[:user_id], comic_book_id: params[:comic_book_id])
+        render json: collection
+    end
+
+
+
     def comic_book_params
         params.require(:comic_book).permit(:image,:name, :description, :count_of_episodes, :rating)
     end
 
+   
 
 end
 
