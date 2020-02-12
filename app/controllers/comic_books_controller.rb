@@ -15,9 +15,15 @@ class ComicBooksController < ApplicationController
     end
 
     def create
-        comic_book = Comic_book.create(comic_book_params)
+        comic_book = ComicBook.create(comic_book_params)
         render json: comic_book
 
+    end
+
+    def update
+        comic_book = ComicBook.find(params[:id])
+        comic_book.update(comic_book_params)
+        render json: comic_book
     end
 
     def collections
