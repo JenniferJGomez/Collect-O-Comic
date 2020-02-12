@@ -1,6 +1,6 @@
 class ComicBooksController < ApplicationController
     def index 
-        all_comics = ComicBook.all
+        all_comics = ComicBook.all.sort_by{|comic| comic.id}
         render json: all_comics.to_json(
             :include => {:users =>
               {:except => [:created_at, :updated_at]}})
@@ -22,7 +22,7 @@ class ComicBooksController < ApplicationController
 
     def update
         comic_book = ComicBook.find(params[:id])
-        comic_book.update(comic_book_params)
+        comic_book.update(rating: params[:rating])
         render json: comic_book
     end
 
