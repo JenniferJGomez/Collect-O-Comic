@@ -27,8 +27,7 @@ class ComicBooksController < ApplicationController
     end
 
     def collections
-
-        collection = Collection.create(user_id: params[:user_id], comic_book_id: params[:comic_book_id])
+        collection = Collection.find_or_create_by(user_id: params[:user_id], comic_book_id: params[:comic_book_id])
         render json: collection
     end
 
