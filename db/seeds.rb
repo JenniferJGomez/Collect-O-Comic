@@ -17,25 +17,6 @@ xml_data = RestClient.get('https://comicvine.gamespot.com/api/series_list/?api_k
 comics_hash = Hash.from_xml(xml_data.body)
 series_array = comics_hash["response"]["results"]["series_list"]
 
-# titles = series_array.map do |series|
-#     series["name"]
-# end.compact
-
-# episode_count = series_array.map do |series|
-#     series["count_of_episodes"]
-# end
-
-# description = series_array.map do |series|
-#     if series["deck"] == nil
-#         "No description available"
-#     else
-#         series["deck"]
-#     end
-# end
-
-# images = series_array.map do |series|
-#     series["image"]["screen_url"]
-# end
 
 series_array.each do |series|
     image = series["image"]["screen_url"]
